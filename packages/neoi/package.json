@@ -1,0 +1,41 @@
+{
+  "name": "neoi",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "neoi": "bin/neoi.js"
+  },
+  "license": "MIT",
+  "description": "React framework based vite",
+  "keywords": [
+    "react",
+    "framework",
+    "vite"
+  ],
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "https://github.com/chenyueban/neoi",
+  "bugs": {
+    "url": "https://github.com/chenyueban/neoi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenyueban/neoi"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "test": "jest --coverage",
+    "build:cjs": "tsc -p ./ --outDir dist",
+    "build:esm": "tsc -p ./ --module esnext --outDir dist/esm",
+    "build": "npm run build:cjs && npm run build:esm",
+    "start": "tsc -w -p ./ --module esnext --outDir dist/esm",
+    "prettier": "prettier --write '**/*.{js,ts,md,json}'"
+  },
+  "dependencies": {
+    "vite": "^2.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.33"
+  }
+}

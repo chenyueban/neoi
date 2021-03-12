@@ -1,0 +1,10 @@
+{
+  "extends": "@chenyueban/tsconfig",
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ES2019", "DOM"],
+    "moduleResolution": "node",
+    "sourceMap": false
+  },
+  "exclude": ["node_modules"]
+}
