@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "prettier": "^2.2.1",
+    "rollup": "^2.41.2",
     "vite": "^2.0.5"
   },
   "devDependencies": {

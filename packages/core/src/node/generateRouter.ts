@@ -2,7 +2,8 @@ import { readdirSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { format } from './format'
 import { parseRoutes } from './parseRoutes'
-import type { IRoutes } from '../type'
+import { parseConfig } from './parseConfig'
+import type { IRoutes } from '../types'
 
 const generateTemplate = (routes: IRoutes) => {
   return format(`import React from 'react'
@@ -37,20 +38,21 @@ const generateTemplate = (routes: IRoutes) => {
   `)
 }
 
-export function generateRouter(srcPath: string) {
+export async function generateRouter(srcPath: string) {
   const pagePath = join(srcPath, 'pages')
-  const pages = readdirSync(pagePath)
-  const routes = parseRoutes(pages)
-  const content = generateTemplate(routes)
+  const config = await parseConfig()
 
-  writeFileSync(
-    join(srcPath, '.neoi', 'config', 'routes.ts'),
-    format(`export default ${JSON.stringify(routes)}`),
-    {
+  if (config && Array.isArray(config.routes)) {
+    const content = generateTemplate(config.routes)
+    return writeFileSync(join(srcPath, '.neoi', 'router.tsx'), content, {
       encoding: 'utf-8',
-    }
-  )
-  writeFileSync(join(srcPath, '.neoi', 'router.tsx'), content, {
-    encoding: 'utf-8',
-  })
+    })
+  } else {
+    const pages = readdirSync(pagePath)
+    const routes = parseRoutes(pages)
+    const content = generateTemplate(routes)
+    return writeFileSync(join(srcPath, '.neoi', 'router.tsx'), content, {
+      encoding: 'utf-8',
+    })
+  }
 }

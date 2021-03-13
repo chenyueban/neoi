@@ -1,3 +1,4 @@
+export * from './defineConfig'
 export * from './format'
 export * from './generateMain'
 export * from './generateRouter'

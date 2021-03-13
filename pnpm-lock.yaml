@@ -51,12 +51,14 @@ importers:
   packages/core:
     dependencies:
       prettier: 2.2.1
+      rollup: 2.41.2
       vite: 2.0.5
     devDependencies:
       '@types/node': 14.14.33
     specifiers:
       '@types/node': ^14.14.33
       prettier: ^2.2.1
+      rollup: ^2.41.2
       vite: ^2.0.5
   packages/neoi:
     dependencies:
@@ -7759,6 +7761,15 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-nepLFAW5W71/MWpS2Yr7r31eS7HRfYg2RXnxb6ehqN9zY42yACxKtEfb4xq8SmNfUohAzGMcyl6jkwdLOAiUbg==
+  /rollup/2.41.2:
+    dev: false
+    engines:
+      node: '>=10.0.0'
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    resolution:
+      integrity: sha512-6u8fJJXJx6fmvKrAC9DHYZgONvSkz8S9b/VFBjoQ6dkKdHyPpPbpqiNl2Bao9XBzDHpq672X6sGZ9G1ZBqAHMg==
   /rsvp/4.8.5:
     dev: true
     engines:
