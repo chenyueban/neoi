@@ -24,15 +24,19 @@ async function bundleConfigFile(
   return code
 }
 
-export async function parseConfig(): Promise<IConfig | null> {
+export async function parseConfig(refresh?: boolean): Promise<IConfig | null> {
   try {
-    const configPath = join(process.cwd(), 'neoi.config.ts')
-    const code = await bundleConfigFile(configPath)
-    const jsPath = configPath + '.js'
-    writeFileSync(jsPath, code)
-    const userConfig = require(jsPath).default
-    unlinkSync(jsPath)
-    return userConfig
+    if (refresh || !global.cacheConfig) {
+      const configPath = join(process.cwd(), 'neoi.config.ts')
+      const code = await bundleConfigFile(configPath)
+      const jsPath = configPath + '.js'
+      writeFileSync(jsPath, code)
+      // clear cache in case of server restart
+      delete require.cache[require.resolve(jsPath)]
+      global.cacheConfig = require(jsPath).default
+      unlinkSync(jsPath)
+    }
+    return global.cacheConfig
   } catch (e) {
     console.error(e)
     return null

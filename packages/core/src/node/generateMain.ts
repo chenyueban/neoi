@@ -11,10 +11,14 @@ const generateTemplate = () => {
   `)
 }
 
-export function generateMain(srcPath: string) {
+export function generateMain() {
   const content = generateTemplate()
 
-  return writeFileSync(join(srcPath, '.neoi', 'main.tsx'), content, {
-    encoding: 'utf-8',
-  })
+  return writeFileSync(
+    join(process.cwd(), 'src', '.neoi', 'main.tsx'),
+    content,
+    {
+      encoding: 'utf-8',
+    }
+  )
 }

@@ -38,21 +38,29 @@ const generateTemplate = (routes: IRoutes) => {
   `)
 }
 
-export async function generateRouter(srcPath: string) {
-  const pagePath = join(srcPath, 'pages')
-  const config = await parseConfig()
+export async function generateRouter(refresh?: boolean) {
+  const pagePath = join(process.cwd(), 'src', 'pages')
+  const config = await parseConfig(refresh)
 
   if (config && Array.isArray(config.routes)) {
     const content = generateTemplate(config.routes)
-    return writeFileSync(join(srcPath, '.neoi', 'router.tsx'), content, {
-      encoding: 'utf-8',
-    })
+    return writeFileSync(
+      join(process.cwd(), 'src', '.neoi', 'router.tsx'),
+      content,
+      {
+        encoding: 'utf-8',
+      }
+    )
   } else {
     const pages = readdirSync(pagePath)
     const routes = parseRoutes(pages)
     const content = generateTemplate(routes)
-    return writeFileSync(join(srcPath, '.neoi', 'router.tsx'), content, {
-      encoding: 'utf-8',
-    })
+    return writeFileSync(
+      join(process.cwd(), 'src', '.neoi', 'router.tsx'),
+      content,
+      {
+        encoding: 'utf-8',
+      }
+    )
   }
 }

@@ -1,8 +1,8 @@
 import { statSync, mkdirSync } from 'fs'
 import { join } from 'path'
 
-export function generateTemp(srcPath: string) {
-  const tempPath = join(srcPath, '.neoi')
+export function generateTemp() {
+  const tempPath = join(process.cwd(), 'src', '.neoi')
   try {
     const stats = statSync(tempPath)
     if (!stats.isDirectory()) {
