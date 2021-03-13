@@ -1,9 +1,12 @@
 {
-  "name": "neoi",
+  "name": "@neoi/core",
   "version": "0.0.0",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "neoi": "bin/neoi.js"
+  },
   "license": "MIT",
   "description": "React framework based vite",
   "keywords": [
@@ -30,6 +33,10 @@
     "prettier": "prettier --write '**/*.{js,ts,md,json}'"
   },
   "dependencies": {
-    "@neoi/runtime": "^0.0.0"
+    "prettier": "^2.2.1",
+    "vite": "^2.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.33"
   }
 }

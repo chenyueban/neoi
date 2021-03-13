@@ -3,7 +3,7 @@
  */
 export interface IRoute {
   path: string
-  name: string
   component: string
+  exact?: boolean
 }
 export type IRoutes = IRoute[]

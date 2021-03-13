@@ -6,7 +6,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@neoi/runtime": "^0.0.0",
+    "@neoi/core": "^0.0.0",
     "neoi": "^0.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"

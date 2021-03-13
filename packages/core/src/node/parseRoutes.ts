@@ -14,9 +14,6 @@ function smooth(page: string) {
   return name
 }
 
-const firstUpperCase = ([first, ...rest]: string) =>
-  first.toUpperCase() + rest.join('')
-
 /**
  * 根据 pages 目录结构解析
  * @param pages pages 目录下包含的文件
@@ -24,11 +21,11 @@ const firstUpperCase = ([first, ...rest]: string) =>
 export function parseRoutes(pages: string[], rootPath?: string): IRoutes {
   return pages.map((page) => {
     const name = smooth(page)
-    const base = rootPath ? `${rootPath}/pages/` : `../pages/`
+    const base = rootPath ? `${rootPath}/pages/` : `pages/`
     return {
       path: name === 'index' ? '/' : '/' + name,
-      name: firstUpperCase(name),
       component: base + name,
+      exact: name === 'index',
     }
   })
 }

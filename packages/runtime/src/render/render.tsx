@@ -5,15 +5,10 @@ function Loading() {
   return <div>loading...</div>
 }
 
-export function render(app: JSX.Element, container: string) {
-  function App() {
-    return <main>{app}</main>
-  }
+export function render(element: React.ReactElement, container: string) {
   ReactDOM.render(
     <React.StrictMode>
-      <React.Suspense fallback={Loading}>
-        <App />
-      </React.Suspense>
+      <React.Suspense fallback={<Loading />}>{element}</React.Suspense>
     </React.StrictMode>,
     document.querySelector(container)
   )

@@ -28,7 +28,7 @@ importers:
       typescript: ^4.1.5
   example:
     dependencies:
-      '@neoi/runtime': link:../packages/runtime
+      '@neoi/core': link:../packages/core
       neoi: link:../packages/neoi
       react: 17.0.1
       react-dom: 17.0.1_react@17.0.1
@@ -39,7 +39,7 @@ importers:
       typescript: 4.2.3
       vite: 2.0.5
     specifiers:
-      '@neoi/runtime': ^0.0.0
+      '@neoi/core': ^0.0.0
       '@types/react': ^17.0.0
       '@types/react-dom': ^17.0.0
       '@vitejs/plugin-react-refresh': ^1.3.1
@@ -48,14 +48,21 @@ importers:
       react-dom: ^17.0.0
       typescript: ^4.1.2
       vite: ^2.0.5
-  packages/neoi:
+  packages/core:
     dependencies:
+      prettier: 2.2.1
       vite: 2.0.5
     devDependencies:
       '@types/node': 14.14.33
     specifiers:
       '@types/node': ^14.14.33
+      prettier: ^2.2.1
       vite: ^2.0.5
+  packages/neoi:
+    dependencies:
+      '@neoi/runtime': link:../runtime
+    specifiers:
+      '@neoi/runtime': ^0.0.0
   packages/runtime:
     dependencies:
       react: 17.0.1
@@ -7163,7 +7170,6 @@ packages:
     resolution:
       integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==
   /prettier/2.2.1:
-    dev: true
     engines:
       node: '>=10.13.0'
     hasBin: true

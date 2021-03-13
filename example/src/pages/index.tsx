@@ -1,10 +1,13 @@
 import React from 'react'
-import { Link } from '@neoi/runtime'
+import { Link, useLocation } from 'neoi'
 
-const Home = (props) => {
+const Home: React.FC = () => {
+  const location = useLocation()
+  console.log(location)
+
   return (
     <div>
-      <Link to="/my">my</Link>
+      <Link to="/my">to my</Link>
     </div>
   )
 }
