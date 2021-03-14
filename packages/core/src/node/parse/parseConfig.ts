@@ -1,13 +1,13 @@
 import { join, isAbsolute } from 'path'
 import { writeFileSync, unlinkSync } from 'fs'
-import type { IConfig } from '../types'
+import { rollup } from 'rollup'
+import type { IConfig } from '../../types'
 
 async function bundleConfigFile(
   fileName: string,
   mjs = false
 ): Promise<string> {
-  const rollup = require('rollup')
-  const bundle = await rollup.rollup({
+  const bundle = await rollup({
     external: (id: string) =>
       (id[0] !== '.' && !isAbsolute(id)) || id.slice(-5, id.length) === '.json',
     input: fileName,

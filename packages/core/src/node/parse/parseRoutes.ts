@@ -1,4 +1,4 @@
-import type { IRoutes } from '../types'
+import type { IRoutes } from '../../types'
 
 /**
  * 抹平文件名的差异

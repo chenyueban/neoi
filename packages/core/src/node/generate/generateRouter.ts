@@ -1,9 +1,8 @@
 import { readdirSync, writeFileSync } from 'fs'
 import { join } from 'path'
-import { format } from './format'
-import { parseRoutes } from './parseRoutes'
-import { parseConfig } from './parseConfig'
-import type { IRoutes } from '../types'
+import { format } from '../format'
+import { parseRoutes, parseConfig } from '../parse'
+import type { IRoutes } from '../../types'
 
 const generateTemplate = (routes: IRoutes) => {
   return format(`import React from 'react'

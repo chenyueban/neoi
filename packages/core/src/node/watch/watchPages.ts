@@ -1,6 +1,6 @@
 import chokidar from 'chokidar'
-import { log } from './logger'
-import { generateRouter } from './generateRouter'
+import { log } from '../logger'
+import { generateRouter } from '../generate'
 
 function action() {
   log(`pages changed, restarting server...`)

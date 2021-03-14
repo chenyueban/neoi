@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs'
 import { join } from 'path'
-import { format } from './format'
+import { format } from '../format'
 
 const generateTemplate = () => {
   return format(`import React from 'react'
@@ -11,10 +11,14 @@ const generateTemplate = () => {
   `)
 }
 
-export function generateMain(srcPath: string) {
+export function generateMain() {
   const content = generateTemplate()
 
-  return writeFileSync(join(srcPath, '.neoi', 'main.tsx'), content, {
-    encoding: 'utf-8',
-  })
+  return writeFileSync(
+    join(process.cwd(), 'src', '.neoi', 'main.tsx'),
+    content,
+    {
+      encoding: 'utf-8',
+    }
+  )
 }
