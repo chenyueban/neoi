@@ -12,6 +12,12 @@ export type IRoutes = IRoute[]
 
 export interface IConfig extends UserConfig {
   routes?: IRoutes
+  /**
+   * @default false
+   */
   store?: boolean
+  /**
+   * @default true
+   */
   mock?: boolean
 }
