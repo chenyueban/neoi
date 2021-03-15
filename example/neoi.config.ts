@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 import { defineConfig } from '@neoi/core'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -11,6 +12,13 @@ export default defineConfig(({ command }) => ({
       localEnabled: command === 'serve',
     }),
   ],
+
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+      '~': resolve(__dirname, 'src/.neoi'),
+    },
+  },
 
   routes: [
     { path: '/', component: 'pages/index', exact: true },

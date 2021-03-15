@@ -16,7 +16,8 @@
     "noEmit": true,
     "jsx": "react",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "~/*": ["./src/.neoi/*"]
     }
   },
   "include": ["./src"]
