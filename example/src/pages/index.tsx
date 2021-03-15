@@ -1,9 +1,12 @@
 import React from 'react'
-import { Link, useLocation } from 'neoi'
+import { Link } from 'neoi'
 
 const Home: React.FC = () => {
-  const location = useLocation()
-  console.log(location)
+  React.useEffect(() => {
+    fetch('/api/get?foo=bar')
+      .then((res) => res.json())
+      .then(console.log)
+  }, [])
 
   return (
     <div>
