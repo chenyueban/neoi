@@ -1,6 +1,7 @@
 {
   "extends": "@chenyueban/tsconfig",
   "compilerOptions": {
+    "target": "ES6",
     "lib": ["ESNext", "DOM"],
     "jsx": "react"
   },

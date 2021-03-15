@@ -1,5 +1,5 @@
-import type { IConfigExport } from '../types'
+import type { IConfig } from '../types'
 
-export function defineConfig(config: IConfigExport) {
+export function defineConfig(config: IConfig) {
   return config
 }

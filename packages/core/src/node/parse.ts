@@ -1,7 +1,7 @@
 import { join, isAbsolute } from 'path'
 import { writeFileSync, unlinkSync } from 'fs'
 import { rollup } from 'rollup'
-import type { IConfig } from '../../types'
+import type { IConfig } from '../types'
 
 async function bundleConfigFile(
   fileName: string,

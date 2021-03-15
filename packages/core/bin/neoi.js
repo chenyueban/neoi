@@ -1,20 +1,10 @@
 #!/usr/bin/env node
 
-const {
-  generateTemp,
-  generateMain,
-  generateRouter,
-  watchConfig,
-  watchPages,
-} = require('../dist/node')
+const { generate, watch } = require('../dist/node')
 
 function start() {
-  generateTemp()
-  generateMain()
-  generateRouter()
-
-  watchConfig()
-  watchPages()
+  generate()
+  watch()
 
   require('vite/dist/node/cli')
 }

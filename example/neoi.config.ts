@@ -4,14 +4,8 @@ import reactRefresh from '@vitejs/plugin-react-refresh'
 import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => ({
-  plugins: [
-    reactRefresh(),
-    viteMockServe({
-      mockPath: 'mock',
-      localEnabled: command === 'serve',
-    }),
-  ],
+export default defineConfig({
+  plugins: [reactRefresh(), viteMockServe({ supportTs: true })],
 
   resolve: {
     alias: {
@@ -24,4 +18,4 @@ export default defineConfig(({ command }) => ({
     { path: '/', component: 'pages/index', exact: true },
     { path: '/my', component: 'pages/my', exact: false },
   ],
-}))
+})

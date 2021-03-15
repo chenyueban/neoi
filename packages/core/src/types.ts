@@ -1,4 +1,4 @@
-import type { UserConfig, UserConfigFn } from 'vite'
+import type { UserConfig } from 'vite'
 
 /**
  * { path: '/', component: '@/pages/index.tsx', exact: true }
@@ -12,5 +12,6 @@ export type IRoutes = IRoute[]
 
 export interface IConfig extends UserConfig {
   routes?: IRoutes
+  store?: boolean
+  mock?: boolean
 }
-export type IConfigExport = IConfig & UserConfigFn
