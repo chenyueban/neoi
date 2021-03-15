@@ -33,8 +33,8 @@
     "update:deps": "pnpm update --interactive --latest"
   },
   "devDependencies": {
-    "@chenyueban/lint": "^0.1.4",
-    "@chenyueban/tsconfig": "^0.1.3",
+    "@chenyueban/lint": "^0.1.5",
+    "@chenyueban/tsconfig": "^0.1.5",
     "@types/jest": "^26.0.20",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "4",

@@ -1,24 +1,15 @@
 {
+  "extends": "@chenyueban/tsconfig",
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client"],
-    "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
+    "lib": ["DOM", "ESNext"],
+    "types": ["vite/client"],
     "jsx": "react",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "~/*": ["./src/.neoi/*"]
+      "@/*": ["src/*"],
+      "~/*": ["src/.neoi/*"]
     }
   },
-  "include": ["./src"]
+  "exclude": ["node_modules"]
 }

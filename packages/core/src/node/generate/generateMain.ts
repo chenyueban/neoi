@@ -6,8 +6,17 @@ const generateTemplate = () => {
   return format(`import React from 'react'
   import { render } from 'neoi'
   import Router from './router'
+  import { StoreContext, stores } from './store'
 
-  render(<Router />, '#root')
+  function App() {
+    return (
+      <StoreContext.Provider value={stores}>
+        <Router />
+      </StoreContext.Provider>
+    )
+  }
+
+  render(<App />, '#root')
   `)
 }
 
