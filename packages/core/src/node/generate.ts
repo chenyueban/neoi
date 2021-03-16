@@ -4,6 +4,10 @@ import { format } from './format'
 import { parseConfig } from './parse'
 import type { IConfig } from '../types'
 
+/**
+ * 创建 .neoi 文件夹
+ * @param cwd
+ */
 function generateTemp(cwd?: string) {
   const tempPath = join(cwd ?? process.cwd(), 'src', '.neoi')
   try {
@@ -21,6 +25,11 @@ interface IGenerateRouter {
   config?: IConfig
   cwd?: string
 }
+/**
+ * 根据 config.routes 配置生成 router.tsx
+ * @param param0
+ * @returns
+ */
 export async function generateRouter({
   refresh,
   config,
@@ -72,6 +81,11 @@ export async function generateRouter({
 const hasRouter = (config: IConfig | null) => Array.isArray(config?.routes)
 const hasStore = (config: IConfig | null) => !!config?.store
 
+/**
+ * 生成 store.ts
+ * @param cwd
+ * @returns
+ */
 async function generateStore(cwd?: string) {
   const config = await parseConfig()
   const content = format(`import { createContext, useContext } from 'react'
@@ -108,6 +122,29 @@ async function generateStore(cwd?: string) {
   }
 }
 
+/**
+ * 生成 exports.ts
+ * @param cwd
+ * @returns
+ */
+async function generateExports(cwd?: string) {
+  const content = format(`export * from './store'
+  `)
+
+  return writeFileSync(
+    join(cwd ?? process.cwd(), 'src', '.neoi', 'exports.ts'),
+    content,
+    {
+      encoding: 'utf-8',
+    }
+  )
+}
+
+/**
+ * 生成 main.tsx
+ * @param cwd
+ * @returns
+ */
 async function generateMain(cwd?: string) {
   const config = await parseConfig()
   const content = format(`import React from 'react'
@@ -144,5 +181,6 @@ export function generate() {
   generateTemp(cwd)
   generateRouter({ refresh: false, cwd })
   generateStore(cwd)
+  generateExports(cwd)
   generateMain(cwd)
 }

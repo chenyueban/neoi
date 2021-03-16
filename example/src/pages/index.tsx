@@ -1,6 +1,5 @@
 import React from 'react'
-import { observer, Link } from 'neoi'
-import { useStore } from '~/store'
+import { observer, Link, useStore } from 'neoi'
 
 const Home = observer(() => {
   const store = useStore('countStore')
