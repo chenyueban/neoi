@@ -1,0 +1,81 @@
+{
+  "menus": {
+    "en-US": {
+      "/components": [
+        {
+          "title": "Foo",
+          "path": "/components/foo",
+          "meta": {},
+          "children": []
+        }
+      ],
+      "*": [
+        {
+          "path": "/",
+          "title": "Neoi - A React framework based vite.",
+          "meta": {
+            "order": 10
+          }
+        }
+      ]
+    },
+    "zh-CN": {
+      "/zh-CN/components": [
+        {
+          "title": "Foo",
+          "path": "/zh-CN/components/foo",
+          "meta": {},
+          "children": []
+        }
+      ],
+      "*": [
+        {
+          "path": "/zh-CN",
+          "title": "Neoi - 基于 vite 的 react 框架",
+          "meta": {
+            "order": 10
+          }
+        }
+      ]
+    }
+  },
+  "locales": [
+    {
+      "name": "en-US",
+      "label": "English"
+    },
+    {
+      "name": "zh-CN",
+      "label": "中文"
+    }
+  ],
+  "navs": {
+    "en-US": [
+      {
+        "title": "Components",
+        "path": "/components"
+      },
+      {
+        "title": "GitHub",
+        "path": "https://github.com/umijs/dumi-template"
+      }
+    ],
+    "zh-CN": [
+      {
+        "title": "组件",
+        "path": "/zh-CN/components"
+      },
+      {
+        "title": "GitHub",
+        "path": "https://github.com/umijs/dumi-template"
+      }
+    ]
+  },
+  "title": "docs",
+  "logo": "https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png",
+  "mode": "site",
+  "repository": {
+    "branch": "master"
+  },
+  "theme": {}
+}
