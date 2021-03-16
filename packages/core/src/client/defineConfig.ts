@@ -1,6 +1,5 @@
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { viteMockServe } from 'vite-plugin-mock'
-import { resolve } from 'path'
 import type { IConfig } from '../types'
 
 const defaultConfig: IConfig = {
@@ -13,12 +12,6 @@ export function defineConfig(config: IConfig) {
     defaultConfig,
     {
       plugins: [reactRefresh()],
-      resolve: {
-        alias: {
-          '@': resolve(__dirname, 'src'),
-          '~': resolve(__dirname, 'src/.neoi'),
-        },
-      },
     },
     config
   )

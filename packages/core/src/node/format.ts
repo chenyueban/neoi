@@ -5,5 +5,6 @@ export function format(string: string) {
     singleQuote: true,
     semi: false,
     endOfLine: 'lf',
+    parser: 'typescript',
   })
 }

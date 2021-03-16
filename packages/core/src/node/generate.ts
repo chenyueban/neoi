@@ -72,6 +72,42 @@ export async function generateRouter({
 const hasRouter = (config: IConfig | null) => Array.isArray(config?.routes)
 const hasStore = (config: IConfig | null) => !!config?.store
 
+async function generateStore(cwd?: string) {
+  const config = await parseConfig()
+  const content = format(`import { createContext, useContext } from 'react'
+  import * as stores from '../stores'
+
+  type Stores = typeof stores
+  type ValueOf<T> = T[keyof T]
+
+  export const StoreContext = createContext<Stores>(stores)
+
+  export function useStore<T extends keyof Stores>(
+    storeName: T
+  ): ValueOf<Stores> {
+    const store = useContext(StoreContext) as Stores
+
+    if (storeName in store) {
+      return store[storeName]
+    }
+
+    throw new Error(\`No store named \${storeName} found!\`)
+  }
+
+  export { stores }
+  `)
+
+  if (config?.store) {
+    return writeFileSync(
+      join(cwd ?? process.cwd(), 'src', '.neoi', 'store.ts'),
+      content,
+      {
+        encoding: 'utf-8',
+      }
+    )
+  }
+}
+
 async function generateMain(cwd?: string) {
   const config = await parseConfig()
   const content = format(`import React from 'react'
@@ -107,5 +143,6 @@ export function generate() {
   const cwd = process.cwd()
   generateTemp(cwd)
   generateRouter({ refresh: false, cwd })
+  generateStore(cwd)
   generateMain(cwd)
 }
