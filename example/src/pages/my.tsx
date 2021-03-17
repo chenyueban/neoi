@@ -1,19 +1,19 @@
 import React from 'react'
-import { Link, useLocation } from 'neoi'
+import { Link } from 'neoi'
 
-const My: React.FC = () => {
-  const location = useLocation()
+const My: React.FC = ({ children }) => {
   React.useEffect(() => {
     fetch('/api/get')
       .then((res) => res.json())
       .then(console.log)
-
-    console.log(location)
   }, [])
 
   return (
     <div>
       <Link to="/">to home</Link>
+      <Link to="/my/info">to info</Link>
+
+      {children}
     </div>
   )
 }

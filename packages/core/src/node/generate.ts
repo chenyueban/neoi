@@ -2,7 +2,7 @@ import { statSync, mkdirSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { format } from './format'
 import { parseConfig } from './parse'
-import type { IConfig } from '../types'
+import type { IConfig, IRoute } from '../types'
 
 /**
  * 创建 .neoi 文件夹
@@ -20,6 +20,48 @@ function generateTemp(cwd?: string) {
   }
 }
 
+function getRouteElement(route: IRoute): string {
+  const routeProps = {
+    exact: route.exact,
+    path: route.path,
+  }
+  if (route.routes) {
+    const routes = route.routes.map((_route) => ({
+      ..._route,
+      path: route.path + _route.path,
+    }))
+    return `${
+      route.redirect
+        ? `<Redirect from="${route.path}" to="${route.redirect}" />`
+        : ''
+    }<Route
+    {...${JSON.stringify(routeProps)}}
+    render={(props) => {
+      // @ts-ignore
+      const Component = React.lazy(() => import('${route.component}'))
+      return (
+        <Component {...props}>
+          <Switch>
+            ${routes.map((_route) => getRouteElement(_route)).join('')}
+          </Switch>
+        </Component>
+      )
+    }}
+  />`
+  } else if (route.redirect) {
+    return `<Redirect from="${route.path}" to="${route.redirect}" />`
+  } else {
+    return `<Route
+    {...${JSON.stringify(routeProps)}}
+    render={(props) => {
+      // @ts-ignore
+      const Component = React.lazy(() => import('${route.component}'))
+      return <Component {...props} />
+    }}
+  />`
+  }
+}
+
 interface IGenerateRouter {
   refresh: boolean
   config?: IConfig
@@ -27,7 +69,7 @@ interface IGenerateRouter {
 }
 /**
  * 根据 config.routes 配置生成 router.tsx
- * @param param0
+ * @param IGenerateRouter
  * @returns
  */
 export async function generateRouter({
@@ -39,30 +81,13 @@ export async function generateRouter({
 
   if (config && Array.isArray(config.routes)) {
     const content = format(`import React from 'react'
-    import { BrowserRouter, Switch, Route } from 'neoi'
-
-    ${config.routes
-      .map(
-        (route, index) =>
-          `const Component${index} = React.lazy(() => import('../${route.component}'))`
-      )
-      .join('\n')}
+    import { BrowserRouter, Switch, Route, Redirect } from 'neoi'
 
     export default function Router() {
       return (
         <BrowserRouter>
           <Switch>
-            ${config.routes
-              .map(
-                (route, index) => `<Route path="${route.path}" ${
-                  route.exact ? 'exact' : 'exact={false}'
-                }>
-              <Component${index} />
-            </Route>
-            `
-              )
-              .join('')
-              .trim()}
+            ${config.routes.map((route) => getRouteElement(route)).join('')}
           </Switch>
         </BrowserRouter>
       )

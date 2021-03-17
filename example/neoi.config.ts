@@ -12,7 +12,16 @@ export default defineConfig({
 
   store: true,
   routes: [
-    { path: '/', component: 'pages/index', exact: true },
-    { path: '/my', component: 'pages/my', exact: false },
+    {
+      path: '/',
+      component: '@/pages/index',
+      exact: true,
+    },
+    {
+      path: '/my',
+      component: '@/pages/my',
+      redirect: '/my/info',
+      routes: [{ path: '/info', component: '@/pages/info' }],
+    },
   ],
 })

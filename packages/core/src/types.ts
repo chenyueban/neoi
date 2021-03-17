@@ -7,6 +7,8 @@ export interface IRoute {
   path: string
   component: string
   exact?: boolean
+  routes?: IRoutes
+  redirect?: string
 }
 export type IRoutes = IRoute[]
 
