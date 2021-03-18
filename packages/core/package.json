@@ -29,7 +29,7 @@
     "build:cjs": "tsc -p ./ --outDir dist",
     "build:esm": "tsc -p ./ --module esnext --outDir dist/esm",
     "build": "npm run build:cjs && npm run build:esm",
-    "start": "tsc -w -p ./ --module esnext --outDir dist/esm",
+    "start": "tsc -w -p ./ --module esnext --outDir dist/esm && npm link",
     "prettier": "prettier --write '**/*.{js,ts,md,json}'"
   },
   "dependencies": {

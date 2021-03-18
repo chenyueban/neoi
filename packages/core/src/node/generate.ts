@@ -153,8 +153,8 @@ async function generateStore(cwd?: string) {
  * @returns
  */
 async function generateExports(cwd?: string) {
-  const content = format(`export * from './store'
-  `)
+  const config = await parseConfig()
+  const content = format(`${hasStore(config) ? `export * from './store'` : ''}`)
 
   return writeFileSync(
     join(cwd ?? process.cwd(), 'src', '.neoi', 'exports.ts'),
@@ -174,7 +174,11 @@ async function generateMain(cwd?: string) {
   const config = await parseConfig()
   const content = format(`import React from 'react'
   import { render } from 'neoi'
-  ${hasRouter(config) ? `import Router from './router'` : ''}
+  ${
+    hasRouter(config)
+      ? `import Router from './router'`
+      : `import Home from '../pages'`
+  }
   ${hasStore(config) ? `import { StoreContext, stores } from './store'` : ''}
 
   function App() {
@@ -184,7 +188,9 @@ async function generateMain(cwd?: string) {
           ? `<StoreContext.Provider value={stores}>
       <Router />
     </StoreContext.Provider>`
-          : '<Router />'
+          : hasRouter(config)
+          ? '<Router />'
+          : '<Home />'
       }
     )
   }

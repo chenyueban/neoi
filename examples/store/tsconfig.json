@@ -1,0 +1,15 @@
+{
+  "extends": "@chenyueban/tsconfig",
+  "compilerOptions": {
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "types": ["vite/client"],
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@@/*": ["src/.neoi/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
