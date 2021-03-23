@@ -1,14 +1,14 @@
 {
   "private": true,
   "name": "example-store",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "neoi --config neoi.config.ts",
     "serve": "neoi preview"
   },
   "dependencies": {
-    "@neoi/core": "^0.0.0",
-    "neoi": "^0.0.0",
+    "@neoi/core": "^0.0.1",
+    "neoi": "^0.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
