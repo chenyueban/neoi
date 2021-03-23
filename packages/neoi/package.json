@@ -1,6 +1,6 @@
 {
   "name": "neoi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
     "prettier": "prettier --write '**/*.{js,ts,md,json}'"
   },
   "dependencies": {
-    "@neoi/runtime": "^0.0.1"
+    "@neoi/runtime": "^0.0.2"
   },
   "publishConfig": {
     "access": "public"
