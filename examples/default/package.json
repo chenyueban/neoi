@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "example-default",
   "version": "0.0.0",
   "scripts": {

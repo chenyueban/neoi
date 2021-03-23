@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "example-store",
   "version": "0.0.0",
   "scripts": {
