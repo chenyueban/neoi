@@ -52,36 +52,36 @@ async function init() {
         return
       }
     }
-
-    const templateDir = path.join(__dirname, 'template')
-    const write = (file, content) => {
-      const targetPath = path.join(root, file)
-      if (content) {
-        fs.writeFileSync(targetPath, content)
-      } else {
-        copy(path.join(templateDir, file), targetPath)
-      }
-    }
-    // copy files to target directory
-    const files = fs.readdirSync(templateDir)
-    files
-      .filter((v) => v !== 'package.json')
-      .forEach((file) => {
-        write(file)
-      })
-    const pkg = require(path.join(templateDir, `package.json`))
-    pkg.name = path.basename(root)
-    write('package.json', JSON.stringify(pkg, null, 2))
-
-    const pkgManager = /yarn/.test(process.env.npm_execpath) ? 'yarn' : 'npm'
-    log(`\n  Done. Now run:\n`)
-    if (root !== cwd) {
-      log(`  cd ${path.relative(cwd, root)}`)
-    }
-    log(`  ${pkgManager === 'yarn' ? `yarn` : `npm install`}`)
-    log(`  ${pkgManager === 'yarn' ? `yarn dev` : `npm run dev`}`)
-    log()
   }
+
+  const templateDir = path.join(__dirname, 'template')
+  const write = (file, content) => {
+    const targetPath = path.join(root, file)
+    if (content) {
+      fs.writeFileSync(targetPath, content)
+    } else {
+      copy(path.join(templateDir, file), targetPath)
+    }
+  }
+  // copy files to target directory
+  const files = fs.readdirSync(templateDir)
+  files
+    .filter((v) => v !== 'package.json')
+    .forEach((file) => {
+      write(file)
+    })
+  const pkg = require(path.join(templateDir, `package.json`))
+  pkg.name = path.basename(root)
+  write('package.json', JSON.stringify(pkg, null, 2))
+
+  const pkgManager = /yarn/.test(process.env.npm_execpath) ? 'yarn' : 'npm'
+  log(`\n  Done. Now run:\n`)
+  if (root !== cwd) {
+    log(`  cd ${path.relative(cwd, root)}`)
+  }
+  log(`  ${pkgManager === 'yarn' ? `yarn` : `npm install`}`)
+  log(`  ${pkgManager === 'yarn' ? `yarn dev` : `npm run dev`}`)
+  log()
 }
 
 module.exports = init

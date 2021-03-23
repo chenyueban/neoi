@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "src/index.js",
   "bin": {
-    "cli": "src/index.js"
+    "create-neoi-app": "src/index.js"
   },
   "engines": {
     "node": ">=12.0.0"
