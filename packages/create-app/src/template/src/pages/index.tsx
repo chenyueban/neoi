@@ -1,18 +1,18 @@
 import React from 'react'
+import { observer, Link, useStore } from 'neoi'
 
-const Home: React.FC = () => {
-  const [value, setValue] = React.useState(0)
+const Home = observer(() => {
+  const store = useStore('countStore')
+
   return (
     <div>
-      <div>{value}</div>
-      <button onClick={() => setValue((prevValue) => prevValue + 1)}>
-        increment
-      </button>
-      <button onClick={() => setValue((prevValue) => prevValue - 1)}>
-        decrement
-      </button>
+      <Link to="/my">to my</Link>
+
+      <div>{store.value}</div>
+      <button onClick={store.increment}>increment</button>
+      <button onClick={store.decrement}>decrement</button>
     </div>
   )
-}
+})
 
 export default Home

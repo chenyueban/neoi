@@ -66,11 +66,11 @@ async function init() {
   // copy files to target directory
   const files = fs.readdirSync(templateDir)
   files
-    .filter((v) => v !== 'package.json')
+    .filter((v) => v !== 'package.template.json')
     .forEach((file) => {
       write(file)
     })
-  const pkg = require(path.join(templateDir, `package.json`))
+  const pkg = require(path.join(templateDir, `package.template.json`))
   pkg.name = path.basename(root)
   write('package.json', JSON.stringify(pkg, null, 2))
 
